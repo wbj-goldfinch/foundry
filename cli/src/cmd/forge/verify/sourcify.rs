@@ -120,14 +120,14 @@ impl SourcifyVerificationProvider {
         let cache = project.read_cache_file()?;
         let (path, entry) = crate::cmd::get_cached_entry_by_name(&cache, &args.contract.name)?;
 
-        if entry.solc_config.settings.metadata.is_none() {
-            eyre::bail!(
-                r#"Contract {} was compiled without the solc `metadata` setting.
-Sourcify requires contract metadata for verification.
-metadata output can be enabled via `extra_output = ["metadata"]` in `foundry.toml`"#,
-                args.contract.name
-            )
-        }
+        //         if entry.solc_config.settings.metadata.is_none() {
+        //             eyre::bail!(
+        //                 r#"Contract {} was compiled without the solc `metadata` setting.
+        // Sourcify requires contract metadata for verification.
+        // metadata output can be enabled via `extra_output = ["metadata"]` in `foundry.toml`"#,
+        //                 args.contract.name
+        //             )
+        //         }
 
         let mut files = HashMap::with_capacity(2 + entry.imports.len());
 
